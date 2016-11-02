@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Draw! :)</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="http://intridea.github.io/sketch.js/lib/sketch.min.js"></script>
+  </head>
+  <body>
+    <div id="tools">
+      <a href="#colors_sketch" data-download="png" style="float: right; width: 100px;">Download</a>
+    </div>
+    <canvas id="colors_sketch" width="800" height="300"></canvas>
+    <script type="text/javascript">
+    $(function () {
+      $.each(['#f00', '#ff0', '#0f0', '#0ff', '#00f', '#f0f', '#000', '#fff'], function () {
+        $('#tools').append("<a href='#colors_sketch' data-color='" + this +
+        "' style='width: 10px; height: 10px; display: block; background: " + this +
+        ";'></a> ");
+      });
+
+      $('#colors_sketch').sketch();
+    });
+    </script>
+  </body>
+</html>
