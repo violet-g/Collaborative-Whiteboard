@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+       * { margin: 0; padding: 0; box-sizing: border-box; }
+       body { font: 13px Helvetica, Arial; }
+       form { background: #000; padding: 3px; position: fixed; bottom: 0; margin-left: 75%; width: 340px; height: 17.5%;}
+       form input { width: 100%; border: 0; padding: 10px; height: 55%}
+       form button { width: 100%; background: rgb(130, 224, 255); border: none; height: 40%; margin-top: 1%}
+       #messages { list-style-type: none; margin: 0 px; padding: `px; margin-left: 75%; border: 3px solid black; height: 82.5%; position: fixed; overflow-y: auto; width: 340px;}
+       #messages li { padding: 5px 10px; word-wrap: break-word; }
+       #messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body onload="getName();">
+    <ul id="messages"; border: 1px solid black;>   
+	</ul>
+    <div></div>
+    <form action="">
+       <input id="m" autocomplete="off" />
+	   <button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+    var socket = io();
+    var timer;
+	var objDiv = document.getElementById("messages");
+    var Username;
+	
+	function getName() {
+        Username = prompt("Please enter your name");
+        //var list_users = [];
+
+        //if(Username in list_users){
+         // console.log("Username already taken.\n Please choose another username.");
+        //}else{
+        //  list_users.push(Username);
+        //}
+        
+
+	}
+	
+    $('form').submit(function(){
+      var time = new Date();
+      socket.emit('chat message', $('#m').val(), Username, time.getHours(), time.getMinutes());
+      $('#m').val('');
+      return false;
+    });
+
+    socket.on('chat message', function(msg){
+      $('#messages').append($('<li>').text(msg));
+	  objDiv.scrollTop = objDiv.scrollHeight;
+    });
+
+    /* if a key is pressed, emit typing **/
+
+    $('input').keydown(function(e){
+      if (e.which != 13)
+         socket.emit('typing');
+    });
+
+    /* if server tells you there is 'typing' clear any previous timeout (allows message to be displayed during long typing sessions), display the "someone is typing message" and then reset the timer to clear the message after 1500ms **/
+    socket.on('typing', function(){
+      clearTimeout(timer);
+      $('div').text("Someone is typing...");
+      timer = setTimeout(function(){
+        $('div').empty();
+      }, 1500);
+    });
+
+    </script>
+  </body>
+</html>
