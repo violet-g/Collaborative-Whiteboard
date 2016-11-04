@@ -4,6 +4,9 @@
     <title>Draw! :)</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="http://intridea.github.io/sketch.js/lib/sketch.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>var socket = io();</script>
+    <script src="client.js"></script>
   </head>
   <body>
     <div id="tools">
@@ -17,8 +20,13 @@
         "' style='width: 10px; height: 10px; display: block; background: " + this +
         ";'></a> ");
       });
-
       $('#colors_sketch').sketch();
+    });
+    $('#colors_sketch').mousedown(function(){
+      socket.emit('drawing');
+    });
+    $('#colors_sketch').mouseup(function(){
+      socket.emit('stopped-drawing'); // Little bit glitchy but it let's us know when the user has stopped drawing
     });
     </script>
   </body>

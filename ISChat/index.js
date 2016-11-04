@@ -3,14 +3,13 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 app.get('/', function(req, res){
-  res.sendfile('index.html');
+  res.sendFile('index.html', {root: __dirname});
 });
 
 io.on('connection', function(socket){
   socket.on('chat message', function(msg, user, hours, mins){
     var minutes;
-    if(mins < 10) minutes = '0' + mins;
-    else minutes = mins;
+    minutes = ((mins < 10) ? '0' : '') + mins;
     io.emit('chat message', user + " (" + hours + ":" + minutes + "): \n" + msg );
   });
 
