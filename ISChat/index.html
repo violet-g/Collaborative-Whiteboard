@@ -14,7 +14,7 @@
     </style>
   </head>
   <body onload="getName();">
-    <ul id="messages"; border: 1px solid black;>   
+    <ul id="messages"; border: 1px solid black;>
 	</ul>
     <div></div>
     <form action="">
@@ -28,7 +28,7 @@
     var timer;
 	var objDiv = document.getElementById("messages");
     var Username;
-	
+
 	function getName() {
         Username = prompt("Please enter your name");
         //var list_users = [];
@@ -38,10 +38,10 @@
         //}else{
         //  list_users.push(Username);
         //}
-        
+
 
 	}
-	
+
     $('form').submit(function(){
       var time = new Date();
       socket.emit('chat message', $('#m').val(), Username, time.getHours(), time.getMinutes());

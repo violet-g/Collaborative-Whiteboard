@@ -8,7 +8,10 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
   socket.on('chat message', function(msg, user, hours, mins){
-    io.emit('chat message', user + " (" + hours + ":" + mins + "): \n" + msg );
+    var minutes;
+    if(mins < 10) minutes = '0' + mins;
+    else minutes = mins;
+    io.emit('chat message', user + " (" + hours + ":" + minutes + "): \n" + msg );
   });
 
   socket.on('typing', function(){
