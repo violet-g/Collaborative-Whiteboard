@@ -1,0 +1,9 @@
+{
+  "name": "Collaborative-Whiteboard",
+  "description": "An online tool that acts as a whiteboard and can be used by many people.",
+  "Author": "Team C",
+  "dependencies":{
+    "socket.io": "*",
+    "express": "4.x"
+  }
+}
