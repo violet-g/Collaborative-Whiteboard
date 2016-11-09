@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", function() {
    // get canvas element and create context
    var canvas  = document.getElementById('drawing');
    var context = canvas.getContext('2d');
-   var width   = document.getElementById('divCanvas').offsetWidth;
-   var height  = document.getElementById('divCanvas').offsetHeight;
+   var width   = window.innerWidth;
+   var height  = window.innerHeight;
    var socket  = io.connect();
 
-   // set canvas to div width/height
+   // set canvas to browser width/height
    canvas.width = width;
    canvas.height = height;
 
