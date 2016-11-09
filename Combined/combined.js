@@ -22,6 +22,16 @@ io.on('connection', function(socket){
     console.log('User logged out.');
   });
 
+	socket.on('chat message', function(msg, user, hours, mins){
+    mins = ((mins < 10) ? '0' : '') + mins;
+    hours = ((hours < 10) ? '0' : '') + hours;
+    io.emit('chat message', user + " (" + hours + ":" + mins + "): \n" + msg );
+  });
+
+  socket.on('typing', function(){
+    socket.broadcast.emit('typing');
+  });
+
   for (var i in line_history) {
       socket.emit('draw_line', { line: line_history[i], colour: "#0099ff" } );
    }
