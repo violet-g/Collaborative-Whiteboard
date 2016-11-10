@@ -1,4 +1,5 @@
 var Username;
+var colour;
 function getName() {
 	Username = prompt("Please enter your name");
         //var list_users = [];
@@ -17,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		pos: {x:0, y:0},
 		pos_prev: false
 	};
-		
+
 	// get canvas element and create context
 	var canvas  = document.getElementById('drawing');
 	var context = canvas.getContext('2d');
@@ -43,14 +44,14 @@ document.addEventListener("DOMContentLoaded", function() {
 	// draw line received from server
 	socket.on('draw_line', function (data) {
 		var line = data.line;
-		var colour = data.colour; // Colour of pen
+		colour = data.colour; // Colour of pen
 		context.beginPath();
 		context.strokeStyle = colour;
 		context.moveTo(line[0].x * width, line[0].y * height);
 		context.lineTo(line[1].x * width, line[1].y * height);
 		context.stroke();
 	});
-	 
+
 	var timer;
 	var objDiv = document.getElementById("messages");
 
@@ -63,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	socket.on('chat message', function(msg){
 		$('#messages').append($('<li>').text(msg));
-		objDiv.scrollTop = objDiv.scrollHeight;	
+		objDiv.scrollTop = objDiv.scrollHeight;
 	});
 
 	/* if a key is pressed, emit typing **/
@@ -86,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		// check if the user is drawing
 		if (mouse.click && mouse.move && mouse.pos_prev) {
 			// send line to to the server
-			socket.emit('draw_line', { line: [ mouse.pos, mouse.pos_prev ], colour:"#0099ff"});
+			socket.emit('draw_line', { line: [ mouse.pos, mouse.pos_prev ], colour:colour});
 			mouse.move = false;
 		}
 		mouse.pos_prev = {x: mouse.pos.x, y: mouse.pos.y};

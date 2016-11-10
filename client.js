@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
       // check if the user is drawing
       if (mouse.click && mouse.move && mouse.pos_prev) {
          // send line to to the server
-         socket.emit('draw_line', { line: [ mouse.pos, mouse.pos_prev ], colour:"#0099ff"});
+         socket.emit('draw_line', { line: [ mouse.pos, mouse.pos_prev ], colour:colour});
          mouse.move = false;
       }
       mouse.pos_prev = {x: mouse.pos.x, y: mouse.pos.y};

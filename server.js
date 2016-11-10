@@ -4,6 +4,7 @@ var io = require('socket.io')(http);
 
 var canvas; // Entire canvas object
 var line_history = [];
+var user_colour = "#000000"
 
 
 app.get('/client.js', function(req, res){
@@ -21,7 +22,7 @@ io.on('connection', function(socket){
   });
 
   for (var i in line_history) {
-      socket.emit('draw_line', { line: line_history[i], colour: "#0099ff" } );
+      socket.emit('draw_line', { line: line_history[i], colour: user_colour } );
    }
 
    socket.on('draw_line', function (data) {
