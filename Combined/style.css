@@ -67,6 +67,7 @@ form button {
 	overflow-y: auto; 
 	width: 20%;
 	top: 4.7%;
+	background: white;
 }
 
 #messages li { 
@@ -77,12 +78,3 @@ form button {
 #messages li:nth-child(odd) { 
 	background: #eee; 
 }
-
-/** { margin: 0; padding: 0; box-sizing: border-box; }
-       body { font: 13px Helvetica, Arial; }
-       form { background: #000; padding: 3px; position: fixed; bottom: 0; margin-left: 75%; width: 340px; height: 17.5%;}
-       form input { width: 100%; border: 0; padding: 10px; height: 55%}
-       form button { width: 100%; background: rgb(130, 224, 255); border: none; height: 40%; margin-top: 1%}
-       #messages { list-style-type: none; margin: 0 px; padding: `px; margin-left: 75%; border: 3px solid black; height: 82.5%; position: fixed; overflow-y: auto; width: 340px;}
-       #messages li { padding: 5px 10px; word-wrap: break-word; }
-       #messages li:nth-child(odd) { background: #eee; }*/

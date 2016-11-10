@@ -4,70 +4,21 @@
 		<title>Collaborative Whiteboard</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="/style.css">
-    <script src="socket.io/socket.io.js"></script>
+		<script src="socket.io/socket.io.js"></script>
 		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-    <script src="clientCom.js"></script>
-		<script>
-		var socket = io();
-    var timer;
-		var objDiv = document.getElementById("messages");
-    var Username;
-
-		function getName() {
-    	Username = prompt("Please enter your name");
-        //var list_users = [];
-
-        //if(Username in list_users){
-         // console.log("Username already taken.\n Please choose another username.");
-        //}else{
-        //  list_users.push(Username);
-        //}
-
-
-		}
-
-    $('form').submit(function(){
-      var time = new Date();
-      socket.emit('chat message', $('#m').val(), Username, time.getHours(), time.getMinutes());
-      $('#m').val('');
-      return false;
-    });
-
-    socket.on('chat message', function(msg){
-    	$('#messages').append($('<li>').text(msg));
-	  objDiv.scrollTop = objDiv.scrollHeight;
-    });
-
-    /* if a key is pressed, emit typing **/
-
-    $('input').keydown(function(e){
-      if (e.which != 13)
-         socket.emit('typing');
-    });
-
-    /* if server tells you there is 'typing' clear any previous timeout (allows message to be displayed during long typing sessions), display the "someone is typing message" and then reset the timer to clear the message after 1500ms **/
-		socket.on('typing', function(){
-      clearTimeout(timer);
-      $('div').text("Someone is typing...");
-      timer = setTimeout(function(){
-        $('div').empty();
-      }, 1500);
-		});
-		</script>
+		<script src="clientCom.js"></script>
 	</head>
 	<body onload="getName();">
 		<div id="divTools">
 			tools
 		</div>
-		<!--<div id="divChat">-->
-			<ul id="messages"; border: 1px solid black;>
-			</ul>
-    	<div></div>
-    	<form action="">
-      	<input id="m" autocomplete="off" />
-	   		<button>Send</button>
-    	</form>
-		<!--</div>-->
+		<ul id="messages"; border: 1px solid black;>
+		</ul>
+		<div></div>
+		<form action="">
+			<input id="m" autocomplete="off" />
+				<button>Send</button>
+		</form>
 		<canvas id="drawing"></canvas>
 	</body>
 </html>
