@@ -1,5 +1,5 @@
 var Username;
-var colour;
+var colour = "#000000";
 function getName() {
 	Username = prompt("Please enter your name");
         //var list_users = [];
@@ -44,9 +44,9 @@ document.addEventListener("DOMContentLoaded", function() {
 	// draw line received from server
 	socket.on('draw_line', function (data) {
 		var line = data.line;
-		colour = data.colour; // Colour of pen
+		var line_colour = data.colour; // Colour of pen
 		context.beginPath();
-		context.strokeStyle = colour;
+		context.strokeStyle = line_colour;
 		context.moveTo(line[0].x * width, line[0].y * height);
 		context.lineTo(line[1].x * width, line[1].y * height);
 		context.stroke();

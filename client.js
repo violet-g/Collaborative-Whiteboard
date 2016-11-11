@@ -1,3 +1,5 @@
+var colour;
+
 document.addEventListener("DOMContentLoaded", function() {
    var mouse = {
       click: false,
@@ -30,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
    // draw line received from server
 	socket.on('draw_line', function (data) {
       var line = data.line;
-      var colour = data.colour; // Colour of pen
+      colour = data.colour; // Colour of pen
       context.beginPath();
       context.strokeStyle = colour;
       context.moveTo(line[0].x * width, line[0].y * height);
