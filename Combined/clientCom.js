@@ -1,5 +1,5 @@
 var Username;
-var colour = "#000000";
+var colour = "#000000"; // Will need to get the colour from the DOM button for colour
 function getName() {
 	Username = prompt("Please enter your name");
         //var list_users = [];
