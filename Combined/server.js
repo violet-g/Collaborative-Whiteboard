@@ -9,12 +9,12 @@ var user_colour ="#000000";
 
 app.use(express.static(__dirname));
 
-app.get('/clientCom.js', function(req, res){
-	res.sendFile('clientCom.js', { root: __dirname });
+app.get('/client.js', function(req, res){
+	res.sendFile('client.js', { root: __dirname });
 });
 
 app.get('/', function(req, res){
-	res.sendFile('combined.html', { root: __dirname });
+	res.sendFile('whiteboard.html', { root: __dirname });
 });
 
 io.on('connection', function(socket){
