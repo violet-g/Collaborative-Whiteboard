@@ -81,6 +81,10 @@ document.addEventListener("DOMContentLoaded", function() {
 	socket.on('username', function(){
 		getName("Sorry that name is taken please enter another");
 	});
+	
+	socket.on('username', function(){
+		getName("Sorry that name is taken please enter another");
+	});
 
 	// main loop, running every 25ms
 	function mainLoop() {

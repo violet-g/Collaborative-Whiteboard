@@ -36,10 +36,7 @@ io.on('connection', function(socket){
 		mins = ((mins < 10) ? '0' : '') + mins;
 		hours = ((hours < 10) ? '0' : '') + hours;
 		if(msg=="") return;
-		chat_history.push(user);
-		chat_history.push(hours);
-		chat_history.push(mins);
-		chat_history.push(msg);
+		chat_history.push({user: user, hours: hours, mins: mins, msg: msg});
 		io.emit('chat message', user + " (" + hours + ":" + mins + "): \n" + msg );
 	});
 	
@@ -52,21 +49,17 @@ io.on('connection', function(socket){
 			user_names.push(username);
 	});
 
-	for (var i = 0; i < chat_history.length; i += 4) {
-		var user = chat_history[i];
-		var hours = chat_history[i+1];
-		var mins = chat_history[i+2];
-		var msg = chat_history[i+3];
-		socket.emit('chat message', user + " (" + hours + ":" + mins + "): \n" + msg );
+	for (var i = 0; i < chat_history.length; i++) {
+		var item = chat_history[i];
+		socket.emit('chat message', item.user + " (" + item.hours + ":" + item.mins + "): \n" + item.msg );
 	}
 	
 	for (var i = 0; i < line_history.length; i++) {
-		socket.emit('draw_line', { line: line_history[i], colour: line_history[++i] } );
+		socket.emit('draw_line', { line: line_history[i].line, colour: line_history[i].colour } );
 	}
 
 	socket.on('draw_line', function (data) {
-		line_history.push(data.line);
-		line_history.push(data.colour);
+		line_history.push({line: data.line, colour: data.colour});
 		io.emit('draw_line', { line: data.line, colour: data.colour});
 	});
 
