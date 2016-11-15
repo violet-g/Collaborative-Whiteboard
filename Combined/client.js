@@ -82,6 +82,10 @@ document.addEventListener("DOMContentLoaded", function() {
 	socket.on('username', function(){
 		getName("Sorry that name is taken please enter another");
 	});
+	
+	socket.on('colour', function(colour_code) {
+		colour = colour_code;
+	});
 
 	// main loop, running every 25ms
 	function mainLoop() {

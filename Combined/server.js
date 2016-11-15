@@ -7,7 +7,10 @@ var canvas; // Entire canvas object
 var line_history = [];
 var chat_history = [];
 var user_names = [];
-var user_colour ="#000000";
+var colours =[{colour: "#4C4CFF", id: null}, {colour: "#31CC99", id: null}, {colour: "#FF007E", id: null},
+{colour: "#FF7E00", id: null}, {colour: "#9E9E5E", id: null}, {colour: "#7E00FF", id: null},
+{colour: "#8C1616", id: null}, {colour: "#D8D819", id: null}, {colour: "#871E77", id: null},
+{colour: "#000000", id: null}, {colour: "#426E42", id: null}, {colour: "#8E8EBC", id: null}];
 
 function contains(name, list) {
 	for (var i = 0; i < list.length; i++)
@@ -20,6 +23,12 @@ function freeUsername(id) {
 	for (var i = 0; i < user_names.length; i++)
 		if (user_names[i].id === id)
 			user_names.splice(i, 1);
+}
+
+function freeColour(id) {
+	for (var i = 0; i < colours.length; i++)
+		if (colours[i].id === id)
+			colours[i].id = null;
 }
 
 app.use(express.static(__dirname));
@@ -37,6 +46,7 @@ io.on('connection', function(socket){
 	socket.on('disconnect', function(){
 		console.log('User logged out.');
 		freeUsername(socket.id);
+		freeColour(socket.id);
 	});
 
 	socket.on('chat message', function(msg, user, hours, mins){
@@ -63,6 +73,14 @@ io.on('connection', function(socket){
 	
 	for (var i = 0; i < line_history.length; i++) {
 		socket.emit('draw_line', { line: line_history[i].line, colour: line_history[i].colour } );
+	}
+	
+	for (var i = 0; i < colours.length; i++) {
+		if (colours[i].id == null) {
+			socket.emit('colour', colours[i].colour);
+			colours[i].id = socket.id;
+			break;
+		}
 	}
 
 	socket.on('draw_line', function (data) {
