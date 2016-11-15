@@ -8,7 +8,8 @@ function getName(msg){
 		Username = prompt("Please enter your name");
 	else 
 		Username = prompt(msg);
-	Username = "anon";
+	if (!Username)
+		Username = "anon";
 	socket.emit('username', Username);
 }
 
