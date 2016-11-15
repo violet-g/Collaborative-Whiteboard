@@ -10,7 +10,7 @@ var user_names = [];
 var colours =[{colour: "#4C4CFF", id: null}, {colour: "#31CC99", id: null}, {colour: "#FF007E", id: null},
 {colour: "#FF7E00", id: null}, {colour: "#9E9E5E", id: null}, {colour: "#7E00FF", id: null},
 {colour: "#8C1616", id: null}, {colour: "#D8D819", id: null}, {colour: "#871E77", id: null},
-{colour: "#000000", id: null}, {colour: "#426E42", id: null}, {colour: "#8E8EBC", id: null}];
+{colour: "#426E42", id: null}, {colour: "#8E8EBC", id: null}];
 
 function contains(name, list) {
 	for (var i = 0; i < list.length; i++)
