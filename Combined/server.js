@@ -5,6 +5,7 @@ var io = require('socket.io')(http);
 
 var canvas; // Entire canvas object
 var line_history = [];
+var chat_history = [];
 var user_colour ="#000000";
 
 app.use(express.static(__dirname));
@@ -27,6 +28,10 @@ io.on('connection', function(socket){
 		mins = ((mins < 10) ? '0' : '') + mins;
 		hours = ((hours < 10) ? '0' : '') + hours;
 		if(msg=="") return;
+		chat_history.push(user);
+		chat_history.push(hours);
+		chat_history.push(mins);
+		chat_history.push(msg);
 		io.emit('chat message', user + " (" + hours + ":" + mins + "): \n" + msg );
 	});
 
@@ -34,6 +39,14 @@ io.on('connection', function(socket){
 		socket.broadcast.emit('typing');
 	});
 
+	for (var i = 0; i < chat_history.length; i += 4) {
+		var user = chat_history[i];
+		var hours = chat_history[i+1];
+		var mins = chat_history[i+2];
+		var msg = chat_history[i+3];
+		socket.emit('chat message', user + " (" + hours + ":" + mins + "): \n" + msg );
+	}
+	
 	for (var i in line_history) {
 		socket.emit('draw_line', { line: line_history[i], colour: user_colour } );
 	}
