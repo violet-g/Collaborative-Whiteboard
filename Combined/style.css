@@ -11,14 +11,8 @@ body, html{
 	font: 13px Helvetica, Arial;
 }
 
-
-#divChat{
-	position: absolute;
-	right: 0;
-	top: 5%;
-	width: 20%;
-	height: 95%;
-	background: yellow;
+button{
+	background: white;
 }
 
 #divTools{

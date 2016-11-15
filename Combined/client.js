@@ -1,5 +1,6 @@
 var Username;
 var colour = "#000000"; // Will need to get the colour from the DOM button for colour
+var eraser = "#FFFFFF";
 var socket  = io.connect();
 
 function getName(msg){
@@ -9,6 +10,12 @@ function getName(msg){
 		Username = prompt(msg);
 	Username = "anon";
 	socket.emit('username', Username);
+}
+
+function erase(){
+	var temp = colour;
+	colour = eraser;
+	eraser = temp;
 }
 
 document.addEventListener("DOMContentLoaded", function() {
