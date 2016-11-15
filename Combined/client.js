@@ -1,14 +1,13 @@
 var Username;
 var colour = "#000000"; // Will need to get the colour from the DOM button for colour
-function getName() {
-	Username = prompt("Please enter your name");
-        //var list_users = [];
+var socket  = io.connect();
 
-        //if(Username in list_users){
-         // console.log("Username already taken.\n Please choose another username.");
-        //}else{
-        //  list_users.push(Username);
-        //}
+function getName(msg){
+	if (typeof msg === "undefined")
+		Username = prompt("Please enter your name");
+	else 
+		Username = prompt(msg);
+	socket.emit('username', Username);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -24,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	var context = canvas.getContext('2d');
 	var width   = window.innerWidth;
 	var height  = window.innerHeight;
-	var socket  = io.connect();
 
 	// set canvas to browser width/height
 	canvas.width = width;
@@ -65,6 +63,10 @@ document.addEventListener("DOMContentLoaded", function() {
 	socket.on('chat message', function(msg){
 		$('#messages').append($('<li>').text(msg));
 		objDiv.scrollTop = objDiv.scrollHeight;
+	});
+	
+	socket.on('username', function(){
+		getName("Sorry that name is taken please enter another");
 	});
 
 	/* if a key is pressed, emit typing **/

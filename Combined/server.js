@@ -6,6 +6,7 @@ var io = require('socket.io')(http);
 var canvas; // Entire canvas object
 var line_history = [];
 var chat_history = [];
+var user_names = [];
 var user_colour ="#000000";
 
 app.use(express.static(__dirname));
@@ -33,6 +34,15 @@ io.on('connection', function(socket){
 		chat_history.push(mins);
 		chat_history.push(msg);
 		io.emit('chat message', user + " (" + hours + ":" + mins + "): \n" + msg );
+	});
+	
+	socket.on('username', function(username){
+		if (user_names.includes(username)) {
+			socket.emit('username');
+		}
+		else {
+			user_names.push(username);
+		}
 	});
 
 	socket.on('typing', function(){
