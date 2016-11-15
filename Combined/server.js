@@ -64,13 +64,13 @@ io.on('connection', function(socket){
 		socket.emit('chat message', user + " (" + hours + ":" + mins + "): \n" + msg );
 	}
 	
-	for (var i in line_history) {
-		socket.emit('draw_line', { line: line_history[i], colour: user_colour } );
+	for (var i = 0; i < line_history.length; i++) {
+		socket.emit('draw_line', { line: line_history[i], colour: line_history[++i] } );
 	}
 
 	socket.on('draw_line', function (data) {
 		line_history.push(data.line);
-		line_history.push(data.colour)
+		line_history.push(data.colour);
 		io.emit('draw_line', { line: data.line, colour: data.colour});
 	});
 
