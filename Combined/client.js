@@ -4,9 +4,10 @@ var eraser = "#FFFFFF";
 var socket  = io.connect();
 
 function getName(msg){
+	Username = null;
 	if (typeof msg === "undefined")
 		Username = prompt("Please enter your name");
-	else 
+	else
 		Username = prompt(msg);
 	if (!Username)
 		Username = "anon";
@@ -76,10 +77,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	socket.on('chat message', function(msg){
 		$('#messages').append($('<li>').text(msg));
 		objDiv.scrollTop = objDiv.scrollHeight;
-	});
-	
-	socket.on('username', function(){
-		getName("Sorry that name is taken please enter another");
 	});
 	
 	socket.on('username', function(){

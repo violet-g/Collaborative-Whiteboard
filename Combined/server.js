@@ -11,9 +11,15 @@ var user_colour ="#000000";
 
 function contains(name, list) {
 	for (var i = 0; i < list.length; i++)
-		if (list[i].toLowerCase() === name.toLowerCase())
+		if (list[i].username.toLowerCase() === name.toLowerCase())
 			return true;
 	return false;
+}
+
+function freeUsername(id) {
+	for (var i = 0; i < user_names.length; i++)
+		if (user_names[i].id === id)
+			user_names.splice(i, 1);
 }
 
 app.use(express.static(__dirname));
@@ -28,8 +34,9 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
 
-	socket.on('disconnect', function(socket){
+	socket.on('disconnect', function(){
 		console.log('User logged out.');
+		freeUsername(socket.id);
 	});
 
 	socket.on('chat message', function(msg, user, hours, mins){
@@ -46,7 +53,7 @@ io.on('connection', function(socket){
 		else if (contains(username, user_names))
 			socket.emit('username');
 		else
-			user_names.push(username);
+			user_names.push({username: username, id: socket.id});
 	});
 
 	for (var i = 0; i < chat_history.length; i++) {
