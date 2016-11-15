@@ -82,21 +82,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		getName("Sorry that name is taken please enter another");
 	});
 
-	/* if a key is pressed, emit typing **/
-	/*$('input').keydown(function(e){
-		if (e.which != 13)
-			socket.emit('typing');
-	});*/
-
-	/* if server tells you there is 'typing' clear any previous timeout (allows message to be displayed during long typing sessions), display the "someone is typing message" and then reset the timer to clear the message after 1500ms **/
-	/*socket.on('typing', function(){
-		clearTimeout(timer);
-		$('div').text("Someone is typing...");
-		timer = setTimeout(function(){
-			$('div').empty();
-		}, 1500);
-	});*/
-
 	// main loop, running every 25ms
 	function mainLoop() {
 		// check if the user is drawing

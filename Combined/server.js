@@ -52,10 +52,6 @@ io.on('connection', function(socket){
 			user_names.push(username);
 	});
 
-	/*socket.on('typing', function(){
-		socket.broadcast.emit('typing');
-	});*/
-
 	for (var i = 0; i < chat_history.length; i += 4) {
 		var user = chat_history[i];
 		var hours = chat_history[i+1];
