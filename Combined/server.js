@@ -44,7 +44,9 @@ io.on('connection', function(socket){
 	});
 	
 	socket.on('username', function(username){
-		if (contains(username, user_names))
+		if (username == "anon")
+			;
+		else if (contains(username, user_names))
 			socket.emit('username');
 		else
 			user_names.push(username);
