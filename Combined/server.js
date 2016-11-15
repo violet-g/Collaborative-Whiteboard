@@ -9,6 +9,13 @@ var chat_history = [];
 var user_names = [];
 var user_colour ="#000000";
 
+function contains(name, list) {
+	for (var i = 0; i < list.length; i++)
+		if (list[i].toLowerCase() === name.toLowerCase())
+			return true;
+	return false;
+}
+
 app.use(express.static(__dirname));
 
 app.get('/client.js', function(req, res){
@@ -37,12 +44,10 @@ io.on('connection', function(socket){
 	});
 	
 	socket.on('username', function(username){
-		if (user_names.includes(username)) {
+		if (contains(username, user_names))
 			socket.emit('username');
-		}
-		else {
+		else
 			user_names.push(username);
-		}
 	});
 
 	socket.on('typing', function(){
