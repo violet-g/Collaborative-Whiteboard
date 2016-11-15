@@ -32,7 +32,7 @@ body, html{
 	top: 0;
 }
 
-form { 
+form {
 	background: #000;
 	padding: 3px;
 	position: absolute;
@@ -42,39 +42,39 @@ form {
 	right: 0;
 }
 
-form input { 
-	width: 100%; 
-	border: 0; 
-	padding: 10px; 
+form input {
+	width: 100%;
+	border: 0;
+	padding: 10px;
 	height: 55%;
 }
 
 
-form button { 
-	width: 100%; 
-	background: rgb(130, 224, 255); 
-	border: none; 
-	height: 40%; 
+form button {
+	width: 100%;
+	background: rgb(130, 224, 255);
+	border: none;
+	height: 40%;
 	margin-top: 1%;
 }
 
-#messages { 
+#messages {
 	list-style-type: none;
-	right: 0; 
-	border: 3px solid black; 
-	height: 83%; 
-	position: fixed; 
-	overflow-y: auto; 
+	right: 0;
+	border: 3px solid black;
+	height: 83%;
+	position: fixed;
+	overflow-y: auto;
 	width: 20%;
 	top: 4.7%;
 	background: white;
 }
 
-#messages li { 
-	padding: 5px 10px; 
-	word-wrap: break-word; 
+#messages li {
+	padding: 5px 10px;
+	word-wrap: break-word;
 }
 
-#messages li:nth-child(odd) { 
-	background: #eee; 
+#messages li:nth-child(odd) {
+	background: #eee;
 }
