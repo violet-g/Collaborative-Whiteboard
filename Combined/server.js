@@ -56,7 +56,7 @@ io.on('connection', function(socket){
 		chat_history.push({user: user, hours: hours, mins: mins, msg: msg});
 		io.emit('chat message', user + " (" + hours + ":" + mins + "): \n" + msg );
 	});
-	
+
 	socket.on('username', function(username){
 		if (username == "anon")
 			;
@@ -66,15 +66,16 @@ io.on('connection', function(socket){
 			user_names.push({username: username, id: socket.id});
 	});
 
+	if(chat_history.length > 200) chat_history.shift(); // Can change if needed
 	for (var i = 0; i < chat_history.length; i++) {
 		var item = chat_history[i];
 		socket.emit('chat message', item.user + " (" + item.hours + ":" + item.mins + "): \n" + item.msg );
 	}
-	
+
 	for (var i = 0; i < line_history.length; i++) {
 		socket.emit('draw_line', { line: line_history[i].line, colour: line_history[i].colour } );
 	}
-	
+
 	for (var i = 0; i < colours.length; i++) {
 		if (colours[i].id == null) {
 			socket.emit('colour', colours[i].colour);
