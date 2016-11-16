@@ -66,7 +66,7 @@ io.on('connection', function(socket){
 			user_names.push({username: username, id: socket.id});
 	});
 
-	if(chat_history.length > 200) chat_history.shift(); // Can change if needed
+	while(chat_history.length > 200) chat_history.shift(); // Can change if needed
 	for (var i = 0; i < chat_history.length; i++) {
 		var item = chat_history[i];
 		socket.emit('chat message', item.user + " (" + item.hours + ":" + item.mins + "): \n" + item.msg );
