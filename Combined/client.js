@@ -78,11 +78,11 @@ document.addEventListener("DOMContentLoaded", function() {
 		$('#messages').append($('<li>').text(msg));
 		objDiv.scrollTop = objDiv.scrollHeight;
 	});
-	
+
 	socket.on('username', function(){
 		getName("Sorry that name is taken please enter another");
 	});
-	
+
 	socket.on('colour', function(colour_code) {
 		colour = colour_code;
 	});
