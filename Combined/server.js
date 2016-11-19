@@ -42,6 +42,9 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket){
+	
+	//for saving to work the background must be filled
+        socket.emit('initialise_background');
 
 	socket.on('disconnect', function(){
 		console.log('User logged out.');
