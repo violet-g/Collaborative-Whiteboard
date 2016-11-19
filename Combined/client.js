@@ -20,6 +20,14 @@ function erase(){
 	eraser = temp;
 }
 
+//this function prompts the user to save the canvas as a .jpg file
+function downloadImage(){
+         var canvas = document.getElementById("drawing");
+         var img = canvas.toDataURL("image/jpeg", 1.0);
+         document.getElementById("save").download = "whiteboard_image.jpg";
+         document.getElementById("save").href = img;
+}
+
 document.addEventListener("DOMContentLoaded", function() {
 	var mouse = {
 		click: false,
@@ -31,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// get canvas element and create context
 	var canvas  = document.getElementById('drawing');
 	var context = canvas.getContext('2d');
-	var width   = window.innerWidth;
+	var width   = window.innerWidth*0.8;//the space under chat is not part of the canvas
 	var height  = window.innerHeight;
 
 	// set canvas to browser width/height
@@ -48,6 +56,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		mouse.pos.y = e.clientY / height;
 		mouse.move = true;
 	};
+	
+	//for saving to work, the canvas has to be filled white
+        socket.on('initialise_background', function(data){
+                context.fillStyle="white";
+                context.fillRect(0, 0, width, height);
+        });
 
 	// draw line received from server
 	socket.on('draw_line', function (data) {
