@@ -1,6 +1,7 @@
 var Username;
 var colour = "#000000"; // Will need to get the colour from the DOM button for colour
 var eraser = "#FFFFFF";
+var lineWidth = 1;
 var socket  = io.connect();
 
 function getName(msg){
@@ -12,6 +13,16 @@ function getName(msg){
 	if (!Username)
 		Username = "anon";
 	socket.emit('username', Username);
+}
+
+function setWidth(){
+	var x = document.getElementById("width").value;
+	if (x === undefined) {
+		;
+	}
+	else { 
+		lineWidth = x;
+	}
 }
 
 function erase(){
@@ -78,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		if (line_colour === '#FFFFFF')
 			context.lineWidth = 25;
 		else
-			context.lineWidth = 1;
+			context.lineWidth = data.lineWidth;
 		context.stroke();
 	});
 
@@ -110,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		// check if the user is drawing
 		if (mouse.click && mouse.move && mouse.pos_prev) {
 			// send line to to the server
-			socket.emit('draw_line', { line: [ mouse.pos, mouse.pos_prev ], colour:colour});
+			socket.emit('draw_line', { line: [ mouse.pos, mouse.pos_prev ], colour:colour, lineWidth:lineWidth});
 			mouse.move = false;
 		}
 		mouse.pos_prev = {x: mouse.pos.x, y: mouse.pos.y};

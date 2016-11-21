@@ -76,7 +76,7 @@ io.on('connection', function(socket){
 	}
 
 	for (var i = 0; i < line_history.length; i++) {
-		socket.emit('draw_line', { line: line_history[i].line, colour: line_history[i].colour } );
+		socket.emit('draw_line', { line: line_history[i].line, colour: line_history[i].colour, lineWidth: line_history[i].lineWidth } );
 	}
 
 	for (var i = 0; i < colours.length; i++) {
@@ -88,8 +88,8 @@ io.on('connection', function(socket){
 	}
 
 	socket.on('draw_line', function (data) {
-		line_history.push({line: data.line, colour: data.colour});
-		io.emit('draw_line', { line: data.line, colour: data.colour});
+		line_history.push({line: data.line, colour: data.colour, lineWidth: data.lineWidth});
+		io.emit('draw_line', { line: data.line, colour: data.colour, lineWidth: data.lineWidth});
 	});
 
 	socket.on('mouse-move', function(x_coord, y_coord){ // Will need to add user into params when possible

@@ -15,6 +15,10 @@ button{
 	background: white;
 }
 
+#widthSize{
+	left: 40%;
+}
+
 #erasebutton{
 	position:relative;
 	height:100%;
