@@ -86,9 +86,9 @@ document.addEventListener("DOMContentLoaded", function() {
 		context.strokeStyle = line_colour;
 		context.moveTo(line[0].x * width, line[0].y * height);
 		context.lineTo(line[1].x * width, line[1].y * height);
-		if (line_colour === '#FFFFFF')
+		/*if (line_colour === '#FFFFFF')
 			context.lineWidth = 25;
-		else
+		else*/
 			context.lineWidth = data.lineWidth;
 		context.stroke();
 	});
