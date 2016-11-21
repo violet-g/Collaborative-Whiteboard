@@ -18,6 +18,10 @@ function erase(){
 	var temp = colour;
 	colour = eraser;
 	eraser = temp;
+	if (colour == "#FFFFFF")
+		document.getElementById("erasebutton").style.background = "#d3d3d3";
+	else
+		document.getElementById("erasebutton").style.background = "#FFFFFF";
 }
 
 //this function prompts the user to save the canvas as a .jpg file
