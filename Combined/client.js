@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			mouse.move = false;
 		}
 		mouse.pos_prev = {x: mouse.pos.x, y: mouse.pos.y};
-		setTimeout(mainLoop, 25);
+		setTimeout(mainLoop, 10);
 	}
 	mainLoop();
 });
