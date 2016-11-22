@@ -19,6 +19,10 @@ button{
 	left: 40%;
 }
 
+#colourOption{
+	left: 20%;
+}
+
 #erasebutton{
 	position:relative;
 	height:100%;

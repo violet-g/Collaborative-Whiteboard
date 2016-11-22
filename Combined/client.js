@@ -25,6 +25,13 @@ function setWidth(){
 	}
 }
 
+function setColour(){
+	var c = document.getElementById("colour").value;
+
+	if(c === undefined) ;
+	else colour = c;
+}
+
 function erase(){
 	var temp = colour;
 	colour = eraser;
