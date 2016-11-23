@@ -67,7 +67,7 @@ button{
 	cursor: crosshair;
 }
 
-form {
+#send {
 	background: #3f2860;
 	padding: 3px;
 	position: absolute;
@@ -77,20 +77,11 @@ form {
 	right: 0;
 }
 
-form input {
+#send input {
 	width: 100%;
 	border: 0;
 	padding: 10px;
 	height: 98%;
-}
-
-
-form button {
-	width: 100%;
-	background: rgb(130, 224, 255);
-	border: none;
-	height: 40%;
-	margin-top: 1%;
 }
 
 #messages {
