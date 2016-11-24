@@ -69,11 +69,12 @@ form input {
 	float: right;
 	width: 10%;
 	height: 100%;
+	border: none;
 }
 
 .liRight a {
 	height:100%;
-	width:100%
+	width:100%;
 }
 
 .liLeft{
@@ -81,12 +82,20 @@ form input {
 	margin-right: 1%;
 	width: 10%;
 	height: 100%;
+	border: none;
 }
 
 .liLeft button {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
+	color: white;
+	border: none;
+	background: #3f2860;
+}
+
+#erase:hover {
+	background: #6f21af!important;
 }
 
 .liLeft form {
@@ -97,6 +106,13 @@ form input {
 #save {
 	width: 100%;
 	height: 100%;
+	border: none;
+	background: #3f2860;
+	color: white;
+}
+
+#save:hover {
+	background: #6f21af;
 }
 
 #drawing{
