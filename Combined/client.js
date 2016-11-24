@@ -38,7 +38,7 @@ function setColour(){
 function erase(){
 	if (colour=="#FFFFFF"){
 		colour = temp;
-		document.getElementId("erase").style.background = "#3f2860";
+		document.getElementById("erase").style.background = "#3f2860";
 	}else{
         	temp = colour;
 		colour = ERASER_COLOUR;

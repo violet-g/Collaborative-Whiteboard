@@ -10,13 +10,12 @@
 	</head>
 	<body onload="getName();">
 		<ul id="ulTools">
-			<li class="liLeft"><button id="erase" type="button" onclick="erase();">ERASER</button></li>
+			<li class="liLeft"><button id="erase" type="button" onclick="erase();">Eraser</button></li>
 			<li class="liRight"><a id="download" href="" download="whiteboard_image.jpg"> 
 			<button id="save" onclick="downloadImage()" >Save</button> </a></li>
 			<li class="liLeft">
 				<form id="widthSize" onsubmit="setWidth()">
-					<label for="width">Line Width</label>
-					<input type="number" id="width" name="width">
+					<input placeholder="Line Width" type="number" id="width" name="width">
 				</form>
 			</li>
 			<li class="liLeft">
@@ -25,7 +24,7 @@
 				</form>
 			</li>
 		</ul>
-			<ul id="messages"; border: 1px solid black;></ul>
+			<ul id="messages"></ul>
 		<form id="send" action="">
 			<input id="m" autocomplete="off" />
 		</form>

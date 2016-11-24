@@ -40,11 +40,16 @@ form label {
 }
 
 form input {
+	position: relative;
 	width: 100%;
+	top: 10%;
+	height: 80%;
 }
 
-#widthSize{
-	left: 40%;
+#colour {
+	position: relative;
+	height: 80%;
+	top: 10%;
 }
 
 #colourOption{
@@ -61,8 +66,10 @@ form input {
 	list-style-type: none;
 	position: absolute;
 	height: 5%;
+	min-height: 30px;
 	width:100%;
 	background: #3f2860;
+	z-index: 2;
 }
 
 .liRight{
@@ -127,7 +134,6 @@ form input {
 	position: absolute;
 	bottom: 0;
 	width: 20%;
-	height: 7.5%;
 	right: 0;
 }
 
@@ -142,7 +148,7 @@ form input {
 	list-style-type: none;
 	right: 0;
 	border: 3px solid #3f2860;
-	height: 88.1%;
+	height: 91%;
 	position: fixed;
 	overflow-y: auto;
 	width: 20%;
