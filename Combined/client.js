@@ -49,8 +49,8 @@ function erase(){
 function downloadImage(){
          var canvas = document.getElementById("drawing");
          var img = canvas.toDataURL("image/jpeg", 1.0);
-         document.getElementById("save").download = "whiteboard_image.jpg";
-         document.getElementById("save").href = img;
+         document.getElementById("download").download = "whiteboard_image.jpg";
+         document.getElementById("download").href = img;
 }
 
 document.addEventListener("DOMContentLoaded", function() {

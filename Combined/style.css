@@ -101,6 +101,7 @@ form input {
 .liLeft form {
 	height: 100%;
 	width: 100%;
+	overflow: hidden;
 }
 
 #save {
