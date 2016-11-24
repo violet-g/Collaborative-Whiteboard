@@ -1,6 +1,8 @@
 var Username;
-var colour = "#000000"; // Will need to get the colour from the DOM button for colour
-var eraser = "#FFFFFF";
+var colour = "#000000";
+const ERASER_COLOUR = "#FFFFFF";
+var eraser;
+var temp = colour;
 var lineWidth = 1;
 var socket  = io.connect();
 
@@ -33,13 +35,14 @@ function setColour(){
 }
 
 function erase(){
-	var temp = colour;
-	colour = eraser;
-	eraser = temp;
-	if (colour == "#FFFFFF")
+	if (colour=="#FFFFFF"){
+		colour = temp;
+		document.getElementId("erase").style.background = "#3f2860";
+	}else{
+        	temp = colour;
+		colour = ERASER_COLOUR;
 		document.getElementById("erase").style.background = "#2e0351";
-	else
-		document.getElementById("erase").style.background = "#3f2860";
+	}
 }
 
 //this function prompts the user to save the canvas as a .jpg file
