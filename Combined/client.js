@@ -31,7 +31,10 @@ function setColour(){
 	var c = document.getElementById("colour").value;
 
 	if(c === undefined) ;
-	if(c == "#ffffff" || colour == "#FFFFFF") ;
+	if(colour == "#FFFFFF") {
+		erase();
+		colour = c;
+	}
 	else colour = c;
 }
 
