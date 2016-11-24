@@ -17,10 +17,11 @@
 				<label for="width">Line Width</label>
 				<input type="number" id="width" name="width">
 			</form></li>
-			<li class="liLeft"><form id="colourOption" onsubmit="setColour()">
-				<label for="colour">Colour</label>
-				<input type="text" id="colour" name="colour">
-			</form></li>
+			<li class="liLeft">
+				<form>
+  				<input id="colour" type="color" name="favcolor" value="#ff0000" onchange="setColour();">
+				</form>
+			</li>
 		</ul>
 			<ul id="messages"; border: 1px solid black;></ul>
 		<form id="send" action="">
